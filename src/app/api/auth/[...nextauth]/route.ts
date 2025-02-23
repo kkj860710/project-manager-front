@@ -7,16 +7,16 @@ export const authOptions: NextAuthOptions = {
     CredentialsProvider({
       name: "Credentials",
       credentials: {
-        email: { label: "email", type: "email", placeholder: "Input Email" },
+        email: { label: "Email", type: "email", placeholder: "Input Email" },
         password: { label: "Password", type: "password" }
       },
       async authorize(credentials, req) {
-
+        console.log("credentials : ", credentials);
         if(!credentials?.email || !credentials?.password) {
           throw new Error("email or password is required");
         }
 
-        const response = await axios.post(process.env.NEXT_PUBLIC_API + '/user/sign-in', {
+        const response = await axios.post(process.env.NEXT_PUBLIC_API + '/api/user/sign-in', {
           email: credentials?.email,
           password: credentials?.password
         })
@@ -28,6 +28,7 @@ export const authOptions: NextAuthOptions = {
         } else {
           throw new Error("유효한 사용자가 없습니다.")
         }
+        console.log("nextAuth : ", user);
         return user
       }
     })

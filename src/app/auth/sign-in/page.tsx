@@ -26,6 +26,8 @@ const LogIn = () => {
                     initialValues={initialValues}
                     onSubmit={async (values, {setSubmitting,}) => {
                         try {
+                            console.log("value email: ", values.email);
+                            console.log("value password: ", values.password);
                             const res = await signIn("credentials", {
                                 email: values.email,
                                 password: values.password,

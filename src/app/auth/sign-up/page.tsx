@@ -13,7 +13,7 @@ const SignUp = () => {
         email : '',
         password : '',
         passwordConfirm : '',
-        role : 'USER',
+        role : 'MEMBER',
     };
 
     return (

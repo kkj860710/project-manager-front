@@ -11,12 +11,12 @@ export async function POST(request:Request) {
         password ,
         role
     } = data;
-    const res = await axios.post( process.env.NEXT_PUBLIC_API + "/user/sign-up", {
+    const res = await axios.post( process.env.NEXT_PUBLIC_API + "/api/user/sign-up", {
             username ,
             email ,
             password ,
             role
         })
-    console.log(res.data)
+
     return NextResponse.json(res.data)
 }

@@ -1,8 +1,9 @@
 import { getServerSession } from 'next-auth/next';
-import { authOptions } from '../[...nextauth]/route';
+// import { authOptions } from '../[...nextauth]/route';
+import getCurrentUser from "@/actions/getCurrentUser";
 
 export async function GET() {
-  const session = await getServerSession(authOptions);
+  const session = await getCurrentUser();
 
   if (!session) {
     return new Response(JSON.stringify({ message: 'Unauthorized' }), {

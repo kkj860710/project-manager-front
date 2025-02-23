@@ -2,25 +2,25 @@
 import React from "react";
 import Link from "next/link";
 import {signOut} from "next-auth/react";
+import {UserType} from "@/types/common";
 
-// interface NavBarProps {
-//     currentUser?: never;
-// }
+interface NavItemProps {
+    mobile? : boolean;
+    currentUser: UserType | null;
+}
 
-const NavItem = ({mobile} : { mobile?: boolean })=> {
-    // const {data: session, status}= useSession();
-    // console.log("NavItem", currentUser);
-
+const NavItem = ({ mobile, currentUser} : NavItemProps)=> {
+    console.log("NavItem : ", currentUser);
 
     return (
         <ul className={`text-md justify-center flex gap-4 w-full items-center ${mobile && "flex-col h-full"}`}>
-            {/*<li className="py-2 text-center border-b-4 cursor-pointer"><Link href="/admin">Admin</Link></li>*/}
-            {/*<li className="py-2 text-center border-b-4 cursor-pointer"><Link href="/user">User</Link></li>*/}
-            {/*{session?.user ? (*/}
-            {/*    <li className="py-2 text-center border-b-4 cursor-pointer">*/}
-            {/*        <button onClick={() => signOut()}>Sign Out</button>*/}
-            {/*    </li>*/}
-            {/*) : (*/}
+            <li className="py-2 text-center border-b-4 cursor-pointer"><Link href="/admin">Admin</Link></li>
+            <li className="py-2 text-center border-b-4 cursor-pointer"><Link href="/user">User</Link></li>
+            {currentUser ? (
+                <li className="py-2 text-center border-b-4 cursor-pointer">
+                    <button onClick={() => signOut()}>Sign Out</button>
+                </li>
+            ) : (
                 <>
                     <li className="py-2 text-center border-b-4 cursor-pointer">
                         <Link href="/auth/sign-in">Sign In</Link>
@@ -28,11 +28,8 @@ const NavItem = ({mobile} : { mobile?: boolean })=> {
                     <li className="py-2 text-center border-b-4 cursor-pointer">
                         <Link href="/auth/sign-up">Sign Up</Link>
                     </li>
-                    <li className="py-2 text-center border-b-4 cursor-pointer">
-                        <button onClick={() => signOut()} >Sign Out</button>
-                    </li>
                 </>
-            {/*)}*/}
+            )}
         </ul>
     );
 };

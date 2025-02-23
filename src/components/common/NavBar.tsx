@@ -1,22 +1,24 @@
 // 'use client'
 import Link from "next/link";
 import NavItem from "@/components/common/NavItem";
+import {UserType} from "@/types/common";
 // import {useDispatch, useSelector} from "react-redux";
 // import {RootState} from "@/redux/store";
 // import {toggleMenu} from "@/redux/slices/menuSlice";
 
-// interface NavBarProps {
-//     currentUser?: never;
-// }
+interface NavBarProps {
+    currentUser: UserType | null;
+}
 
-const NavBar  = () => {
-
+const NavBar  = ({currentUser} : NavBarProps) => {
+    // console.log(currentUser)
     // const dispatch = useDispatch();
     // const menuOpen = useSelector((state: RootState) => state.menu.isOpen);
     //
     // const handleMenu = () => {
     //     dispatch(toggleMenu());
     // }
+    console.log("NavBar: ", currentUser)
 
     return (
         <nav className="relative z-10 w-full bg-orange-500 text-white">
@@ -29,7 +31,9 @@ const NavBar  = () => {
                 {/*</div>*/}
                 <div className='hidden sm:block'>
 
-                    <NavItem  />
+                    <NavItem
+                        currentUser={currentUser}
+                    />
                 </div>
             </div>
             {/*<div className='block sm:hidden'>*/}
