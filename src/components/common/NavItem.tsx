@@ -1,7 +1,7 @@
-// 'use client'
+'use client'
 import React from "react";
 import Link from "next/link";
-// import {signOut} from "next-auth/react";
+import {signOut} from "next-auth/react";
 
 // interface NavBarProps {
 //     currentUser?: never;
@@ -27,6 +27,9 @@ const NavItem = ({mobile} : { mobile?: boolean })=> {
                     </li>
                     <li className="py-2 text-center border-b-4 cursor-pointer">
                         <Link href="/auth/sign-up">Sign Up</Link>
+                    </li>
+                    <li className="py-2 text-center border-b-4 cursor-pointer">
+                        <button onClick={() => signOut()} >Sign Out</button>
                     </li>
                 </>
             {/*)}*/}

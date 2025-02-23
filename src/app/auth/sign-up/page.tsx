@@ -9,14 +9,11 @@ const SignUp = () => {
     const router = useRouter();
 
     const initialValues: UserType = {
-        userLoginId: '',
-        userPassword: '',
-        userPasswordConfirm: '',
-        userName: '',
-        userEmail: '',
-        userPhoneNo: '',
-        // birthDate: '',
-        role: 'USER',
+        username : '',
+        email : '',
+        password : '',
+        passwordConfirm : '',
+        role : 'USER',
     };
 
     return (
@@ -28,7 +25,8 @@ const SignUp = () => {
                 <Formik
                     initialValues={initialValues}
                     onSubmit={async (values, {setSubmitting,}) => {
-                        const response = await axios.post('/api/sign-up', values, {})
+                        console.log(values);
+                        const response = await axios.post('/api/sign-up', values)
                         if(response.status === 200 || response.status === 201) {
                             setSubmitting(false);
                             router.push('/');
@@ -36,17 +34,17 @@ const SignUp = () => {
                     }}
                     validate={(values) => {
                         const errors: Partial<UserType> = {};
-                        if (!values.userLoginId) {
-                            errors.userLoginId = '아이디는 필수 항목입니다.';
+                        if (!values.email) {
+                            errors.email = '이메일은 필수 항목입니다.';
                         }
-                        if (!values.userName) {
-                            errors.userName = '이름은 필수 항목입니다.';
+                        if (!values.username) {
+                            errors.username = '이름은 필수 항목입니다.';
                         }
-                        if (!values.userPassword) {
-                            errors.userPassword = '비밀번호는 필수 항목입니다.';
+                        if (!values.password) {
+                            errors.password = '비밀번호는 필수 항목입니다.';
                         }
-                        if(values.userPasswordConfirm !== values.userPassword) {
-                            errors.userPasswordConfirm = '위에 입력한 비밀번호와 다릅니다.'
+                        if(values.passwordConfirm !== values.passwordConfirm) {
+                            errors.passwordConfirm = '위에 입력한 비밀번호와 다릅니다.'
                         }
                         if(!values.role) {
                             errors.role = "권한을 입력하세요."
@@ -66,18 +64,18 @@ const SignUp = () => {
                         <form onSubmit={handleSubmit} className="space-y-4">
                             <div>
                                 <label className="block text-sm font-medium text-gray-700">
-                                    아이디
+                                    이메일
                                 </label>
                                 <input
-                                    type="text"
-                                    name="userLoginId"
+                                    type="email"
+                                    name="email"
                                     onChange={handleChange}
                                     onBlur={handleBlur}
-                                    value={values.userLoginId}
+                                    value={values.email}
                                     className="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-400"
                                 />
-                                {errors.userLoginId && touched.userLoginId && (
-                                    <p className="text-red-500 text-sm">{errors.userLoginId}</p>
+                                {errors.email && touched.email && (
+                                    <p className="text-red-500 text-sm">{errors.email}</p>
                                 )}
                             </div>
                             <div>
@@ -86,14 +84,14 @@ const SignUp = () => {
                                 </label>
                                 <input
                                     type="password"
-                                    name="userPassword"
+                                    name="password"
                                     onChange={handleChange}
                                     onBlur={handleBlur}
-                                    value={values.userPassword}
+                                    value={values.password}
                                     className="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-400"
                                 />
-                                {errors.userPassword && touched.userPassword && (
-                                    <p className="text-red-500 text-sm">{errors.userPassword}</p>
+                                {errors.password && touched.password && (
+                                    <p className="text-red-500 text-sm">{errors.password}</p>
                                 )}
                             </div>
                             <div>
@@ -102,14 +100,14 @@ const SignUp = () => {
                                 </label>
                                 <input
                                     type="password"
-                                    name="userPasswordConfirm"
+                                    name="passwordConfirm"
                                     onChange={handleChange}
                                     onBlur={handleBlur}
-                                    value={values.userPasswordConfirm}
+                                    value={values.passwordConfirm}
                                     className="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-400"
                                 />
-                                {errors.userPasswordConfirm && touched.userPasswordConfirm && (
-                                    <p className="text-red-500 text-sm">{errors.userPasswordConfirm}</p>
+                                {errors.passwordConfirm && touched.passwordConfirm && (
+                                    <p className="text-red-500 text-sm">{errors.passwordConfirm}</p>
                                 )}
                             </div>
                             <div>
@@ -118,54 +116,15 @@ const SignUp = () => {
                                 </label>
                                 <input
                                     type="text"
-                                    name="userName"
+                                    name="username"
                                     onChange={handleChange}
                                     onBlur={handleBlur}
-                                    value={values.userName}
+                                    value={values.username}
                                     className="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-400"
                                 />
-                                {errors.userName && touched.userName && (
-                                    <p className="text-red-500 text-sm">{errors.userName}</p>
+                                {errors.username && touched.username && (
+                                    <p className="text-red-500 text-sm">{errors.username}</p>
                                 )}
-                            </div>
-                            <div>
-                                <label className="block text-sm font-medium text-gray-700">
-                                    이메일
-                                </label>
-                                <input
-                                    type="email"
-                                    name="userEmail"
-                                    onChange={handleChange}
-                                    onBlur={handleBlur}
-                                    value={values.userEmail}
-                                    className="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-400"
-                                />
-                            </div>
-                            <div>
-                                <label className="block text-sm font-medium text-gray-700">
-                                    전화번호
-                                </label>
-                                <input
-                                    type="text"
-                                    name="userPhoneNo"
-                                    onChange={handleChange}
-                                    onBlur={handleBlur}
-                                    value={values.userPhoneNo}
-                                    className="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-400"
-                                />
-                            </div>
-                            <div>
-                                <label className="block text-sm font-medium text-gray-700">
-                                    생년월일
-                                </label>
-                                <input
-                                    type="date"
-                                    name="userBirthDate"
-                                    onChange={handleChange}
-                                    onBlur={handleBlur}
-                                    value={values.birthDate}
-                                    className="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-400"
-                                />
                             </div>
                             <div>
                                 <label className="block text-sm font-medium text-gray-700">

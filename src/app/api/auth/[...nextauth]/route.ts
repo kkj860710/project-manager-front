@@ -7,18 +7,18 @@ export const authOptions: NextAuthOptions = {
     CredentialsProvider({
       name: "Credentials",
       credentials: {
-        username: { label: "Username", type: "text", placeholder: "Input UserName" },
+        email: { label: "email", type: "email", placeholder: "Input Email" },
         password: { label: "Password", type: "password" }
       },
       async authorize(credentials, req) {
 
-        if(!credentials?.username || !credentials?.password) {
-          throw new Error("Username or password is required");
+        if(!credentials?.email || !credentials?.password) {
+          throw new Error("email or password is required");
         }
 
-        const response = await axios.post(process.env.NEXT_PUBLIC_API + 'user/sign-in', {
-          userLoginId: credentials?.username,
-          userPassword: credentials?.password
+        const response = await axios.post(process.env.NEXT_PUBLIC_API + '/user/sign-in', {
+          email: credentials?.email,
+          password: credentials?.password
         })
 
         let user = null;
