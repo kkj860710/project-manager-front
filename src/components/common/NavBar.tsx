@@ -1,7 +1,7 @@
 // 'use client'
 import Link from "next/link";
 import NavItem from "@/components/common/NavItem";
-import {UserType} from "@/types/common";
+import {UserType} from "@/types/user";
 // import {useDispatch, useSelector} from "react-redux";
 // import {RootState} from "@/redux/store";
 // import {toggleMenu} from "@/redux/slices/menuSlice";
@@ -11,6 +11,7 @@ interface NavBarProps {
 }
 
 const NavBar  = ({currentUser} : NavBarProps) => {
+
     // console.log(currentUser)
     // const dispatch = useDispatch();
     // const menuOpen = useSelector((state: RootState) => state.menu.isOpen);
@@ -41,6 +42,7 @@ const NavBar  = ({currentUser} : NavBarProps) => {
             {/*</div>*/}
         </nav>
     )
+
 }
 
 export default NavBar;

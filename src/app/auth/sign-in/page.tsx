@@ -1,6 +1,6 @@
 'use client'
 import {Formik} from "formik";
-import {UserType} from "@/types/common";
+import {UserType} from "@/types/user";
 import {signIn} from "next-auth/react";
 import {useRouter} from "next/navigation";
 

@@ -1,4 +1,4 @@
-import {UserType} from "@/types/common";
+import {UserType} from "@/types/user";
 import {NextResponse} from "next/server";
 import axios from "axios";
 

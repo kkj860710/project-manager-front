@@ -1,8 +1,8 @@
-import NextAuth, { NextAuthOptions } from "next-auth";
+import NextAuth from "next-auth";
 import CredentialsProvider from "next-auth/providers/credentials";
 import axios from "axios";
 
-export const authOptions: NextAuthOptions = {
+const handler = NextAuth({
   providers: [
     CredentialsProvider({
       name: "Credentials",
@@ -10,60 +10,57 @@ export const authOptions: NextAuthOptions = {
         email: { label: "Email", type: "email", placeholder: "Input Email" },
         password: { label: "Password", type: "password" }
       },
-      async authorize(credentials, req) {
+      async authorize(credentials) {
         console.log("credentials : ", credentials);
-        if(!credentials?.email || !credentials?.password) {
+        if (!credentials?.email || !credentials?.password) {
           throw new Error("email or password is required");
         }
 
-        const response = await axios.post(process.env.NEXT_PUBLIC_API + '/api/user/sign-in', {
-          email: credentials?.email,
-          password: credentials?.password
-        })
+        const response = await axios.post(
+            process.env.NEXT_PUBLIC_API + "/api/user/sign-in",
+            {
+              email: credentials?.email,
+              password: credentials?.password,
+            }
+        );
 
         let user = null;
-        if( response.status === 200 || response.status === 201) {
-          // delete response.data.userPassword;
+        if (response.status === 200 || response.status === 201) {
           user = response.data;
         } else {
-          throw new Error("유효한 사용자가 없습니다.")
+          throw new Error("유효한 사용자가 없습니다.");
         }
         console.log("nextAuth : ", user);
-        return user
-      }
-    })
+        return user;
+      },
+    }),
   ],
   session: {
     strategy: "jwt",
   },
   jwt: {
     secret: process.env.NEXTAUTH_JWT_SECRET,
-    maxAge: 30 * 24 * 60 * 60,   // ✅ 30일을 초 단위로 설정
+    maxAge: 30 * 24 * 60 * 60, // 30일 (초 단위)
   },
-  pages : {
-    signIn: "app/auth/sign-in"
+  pages: {
+    signIn: "app/auth/sign-in",
   },
   callbacks: {
-    async signIn({ user, account, profile, email, credentials }) {
-      return true
+    async signIn() {
+      return true;
     },
-    async redirect({ url, baseUrl }) {
-      return baseUrl
+    async redirect({ baseUrl }) {
+      return baseUrl;
     },
-    async session({ session, token }) {
-      session.user = token
-      return session
+    async session({ session }) {
+      // session.user = token;
+      return session;
     },
-    async jwt({ token, user, account, profile, isNewUser }) {
-      return {...token, ...user}
+    async jwt({ token, user }) {
+      return { ...token, ...user };
     },
-}};
+  },
+});
 
-/**
- * NextAuth 핸들러
- */
-const handler = NextAuth(authOptions);
-
-// Next.js App Router에서
-// GET, POST 두 HTTP 메서드를 export
+// Next.js API Route 핸들러로 등록
 export { handler as GET, handler as POST };

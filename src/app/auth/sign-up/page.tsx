@@ -1,6 +1,6 @@
 'use client'
 import {Formik} from 'formik';
-import {UserType} from '@/types/common';
+import {UserType} from '@/types/user';
 import {useRouter} from "next/navigation";
 import axios from "axios";
 

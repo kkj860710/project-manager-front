@@ -2,7 +2,7 @@
 import React from "react";
 import Link from "next/link";
 import {signOut} from "next-auth/react";
-import {UserType} from "@/types/common";
+import {UserType} from "@/types/user";
 
 interface NavItemProps {
     mobile? : boolean;

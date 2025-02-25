@@ -1,4 +1,4 @@
-import { getServerSession } from 'next-auth/next';
+// import { getServerSession } from 'next-auth/next';
 // import { authOptions } from '../[...nextauth]/route';
 import getCurrentUser from "@/actions/getCurrentUser";
 
