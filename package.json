@@ -3,19 +3,10 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "dev": "env-cmd -f .env.development next dev",
-    "stg:build": "env-cmd -f .env.stage next build",
-    "stg:start": "env-cmd -f .env.stage next start",
-    "prd:build": "env-cmd -f .env.production next build",
-    "prd:start": "env-cmd -f .env.production next start",
-    "devServer": "pm2 start ecosystem.config.js --only project_manager --env dev",
-    "dev:start-eco": "npm run stg:build && pm2 reload ecosystem.config.js --only project_manager --env development",
-    "dev:start-server": "npm run stg:build && cross-env NODE_ENV=dev node server.js",
-    "stg:start-eco": "npm run stg:build && pm2 reload ecosystem.config.js --only project_manager --env stage",
-    "stg:start-server": "npm run stg:build && cross-env NODE_ENV=stage node server.js",
-    "prd:start-eco": "npm run prd:build && pm2 start ecosystem.config.js --only project_manager --env production",
-    "prd:reload-eco": "npm run prd:build && pm2 reload ecosystem.config.js --only project_manager --env production",
-    "prd:start-server": "npm run prd:build && cross-env NODE_ENV=production node server.js"
+    "dev": "next dev --turbopack",
+    "build": "next build",
+    "start": "next start",
+    "lint": "next lint"
   },
   "dependencies": {
     "@hello-pangea/dnd": "^18.0.1",
