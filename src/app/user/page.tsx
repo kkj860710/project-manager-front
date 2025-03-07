@@ -1,4 +1,3 @@
-// import getCurrentUser from "@/actions/getCurrentUser";
 
 const User = async() => {
     // const getUser = await getCurrentUser();

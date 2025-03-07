@@ -18,6 +18,7 @@
     "prd:start-server": "npm run prd:build && cross-env NODE_ENV=production node server.js"
   },
   "dependencies": {
+    "@hello-pangea/dnd": "^18.0.1",
     "axios": "^1.7.9",
     "cross-env": "^7.0.3",
     "env-cmd": "10.1.0",
@@ -28,7 +29,6 @@
     "pm2": "^5.3.1",
     "react": "^19.0.0",
     "react-dom": "^19.0.0",
-    "recoil": "^0.7.7",
     "zod": "^3.24.2"
   },
   "devDependencies": {
