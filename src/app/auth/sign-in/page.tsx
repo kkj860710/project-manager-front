@@ -1,20 +1,24 @@
 'use client'
 import {Formik} from "formik";
-import {UserType} from "@/types/user";
-import {signIn} from "next-auth/react";
 import {useRouter} from "next/navigation";
+import {signIn} from "next-auth/react";
 
-interface LonginValue {
+// import { useSession } from "next-auth/react";
+
+interface LoginValue {
     email: string;
     password: string;
 }
 
 const LogIn = () => {
+
     const router = useRouter();
-    const initialValues: LonginValue = {
+
+    const initialValues: LoginValue = {
         email: '',
         password: '',
     };
+
 
     return (
         <div className="min-h-screen bg-gray-100 flex items-center justify-center">
@@ -24,37 +28,53 @@ const LogIn = () => {
                 </h2>
                 <Formik
                     initialValues={initialValues}
-                    onSubmit={async (values, {setSubmitting,}) => {
+                    onSubmit={async (values, { setSubmitting }) => {
+                        // try {
+                        //     // ✅ API 라우트를 경유하여 로그인 처리
+                        //     const response = await fetch("/api/sign-in", {
+                        //         method: "POST",
+                        //         headers: {
+                        //             "Content-Type": "application/json",
+                        //         },
+                        //         body: JSON.stringify({
+                        //             email: values.email,
+                        //             password: values.password,
+                        //         }),
+                        //     });
+                        //     console.log(response);
+                        //     const result = await response.json();
+                        //
+                        //     if (response.ok) {
+                        //         console.log("Login successful");
+                        //         router.replace("/"); // 로그인 성공 후 리다이렉트
+                        //     } else {
+                        //         console.error("Login failed", result.error);
+                        //     }
                         try {
-                            console.log("value email: ", values.email);
-                            console.log("value password: ", values.password);
                             const res = await signIn("credentials", {
                                 email: values.email,
                                 password: values.password,
-                                redirect: false, // 리다이렉트를 방지
+                                redirect: false,  // ✅ 자동 리다이렉트 방지
                             });
 
                             if (res?.ok) {
                                 console.log("Login successful");
-                                // 로그인 성공 시 원하는 페이지로 이동
                                 router.push("/");
-                                // todo kkj 실패시 다이얼로그 처리
+                                router.refresh();
                             } else {
                                 console.error("Login failed");
                             }
                         } catch (error) {
-                            console.log(error);
-                            throw new Error("Error during sign in");
+                            console.error("Error during sign in", error);
                         } finally {
                             setSubmitting(false);
                         }
                     }}
                     validate={(values) => {
-                        const errors: Partial<UserType> = {};
+                        const errors: Partial<LoginValue> = {};
                         if (!values.email) {
                             errors.email = '이메일은 필수 항목입니다.';
                         }
-
                         if (!values.password) {
                             errors.password = '비밀번호는 필수 항목입니다.';
                         }
@@ -67,7 +87,7 @@ const LogIn = () => {
                           touched,
                           handleChange,
                           handleBlur,
-                          handleSubmit ,
+                          handleSubmit,
                           isSubmitting,
                       }) => (
                         <form onSubmit={handleSubmit} className="space-y-4">
@@ -107,7 +127,7 @@ const LogIn = () => {
                             <button
                                 type="submit"
                                 disabled={isSubmitting}
-                                className="w-full py-2 rounded-lg  focus:outline-none focus:ring-2 focus:ring-offset-2"
+                                className="w-full py-2 rounded-lg focus:outline-none focus:ring-2 focus:ring-offset-2"
                             >
                                 로그인
                             </button>
@@ -116,7 +136,7 @@ const LogIn = () => {
                 </Formik>
             </div>
         </div>
-    )
-}
+    );
+};
 
 export default LogIn;

@@ -6,7 +6,9 @@ declare module "next-auth"{
             id?: number,
             userId?: number,
             username? : string,
-            email : string,
+            name?: string,
+            image?: string,
+            email: string,
             password : string,
             passwordConfirm? : string,
             role : string,
@@ -14,6 +16,6 @@ declare module "next-auth"{
             exp? : number,
             jwt : string,
             jti? : string,
-        } & DefaultSession['user']
+        } & DefaultSession['JWT']
     }
 }

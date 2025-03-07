@@ -17,6 +17,6 @@ export async function POST(request:Request) {
             password ,
             role
         })
-
+    console.log(res);
     return NextResponse.json(res.data)
 }

@@ -1,10 +1,11 @@
-import type { Metadata } from "next";
+import type {Metadata} from "next";
 import "@/styles/globals.css";
 import NavBar from "@/components/common/NavBar";
 import Footer from "@/components/common/Footer";
 import RecoilProvider from "@/provider/RecoilProvider";
 import React from "react";
-import getCurrentUser from "@/actions/getCurrentUser";
+import {getServerSession} from "next-auth";
+import {authOptions} from "@/app/api/auth/[...nextauth]/route";
 
 export const metadata: Metadata = {
   title: "Project Manager App",
@@ -16,9 +17,9 @@ export default async function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+    const currentUser = await getServerSession(authOptions);
 
-  const currentUser = await getCurrentUser();
-
+    console.log("currentUser: {}", currentUser);
   return (
     <html lang="en">
       <body>
