@@ -26,7 +26,7 @@ export default async function RootLayout({
                  currentUser={currentUser}
              />
                  {children}
-             <Footer/>
+             <Footer />
         </body>
         </html>
     );

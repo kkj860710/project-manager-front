@@ -1,4 +1,4 @@
-export interface issueHistory {
+export interface IssueHistoryType {
     id?: number,                // front id
     issueHistoryId: string,     // db 저장아이디
     issueId: string,            // issue id

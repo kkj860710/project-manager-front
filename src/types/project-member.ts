@@ -1,4 +1,4 @@
-export interface ProjectMember {
+export interface ProjectMemberType {
     id?: number,                // front id
     projectMemberId: string,    // db id
     projectId: string,          // project id

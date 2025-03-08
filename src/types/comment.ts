@@ -1,4 +1,4 @@
-export interface comment {
+export interface CommentType {
     id?: number,            // front id
     commentId: string,      // db id
     issueId: string,        // issue id

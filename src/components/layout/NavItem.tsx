@@ -7,11 +7,12 @@ import {Session} from "next-auth";
 
 interface NavItemProps {
     mobile? : boolean;
-    onSelectProject: (projectId: string) => void;
+    onSelectProject?: (projectId: string) => void;
     currentUser: Session | null;
 }
 
-const NavItem = ({ mobile, onSelectProject, currentUser } : NavItemProps)=> {
+// const NavItem = ({ mobile, onSelectProject, currentUser } : NavItemProps)=> {
+const NavItem = ({ mobile, currentUser } : NavItemProps)=> {
     console.log("NavItem : ", currentUser);
     // 프로젝트 가져오기
     // 해당프로젝트를 nav클릭시 하단에 표시
@@ -49,22 +50,22 @@ const NavItem = ({ mobile, onSelectProject, currentUser } : NavItemProps)=> {
 
                         {/* 드롭다운 메뉴 */}
                         {/*기본 설정만 했음 수정요망 */}
-                        {dropdownOpen && (
-                            <ul className="absolute left-0 mt-2 w-48 bg-white shadow-lg rounded-md border border-gray-200">
-                                {projects.map((project) => (
-                                    <li
-                                        key={project.id}
-                                        className="py-2 px-4 hover:bg-gray-100 cursor-pointer"
-                                        onClick={() => {
-                                            onSelectProject(project.id);
-                                            setDropdownOpen(false); // 선택 후 드롭다운 닫기
-                                        }}
-                                    >
-                                        {project.name}
-                                    </li>
-                                ))}
-                            </ul>
-                        )}
+                        {/*{dropdownOpen && (*/}
+                        {/*    <ul className="absolute left-0 mt-2 w-48 bg-white shadow-lg rounded-md border border-gray-200">*/}
+                        {/*        {projects.map((project) => (*/}
+                        {/*            <li*/}
+                        {/*                key={project.id}*/}
+                        {/*                className="py-2 px-4 hover:bg-gray-100 cursor-pointer"*/}
+                        {/*                onClick={() => {*/}
+                        {/*                    onSelectProject(project.id);*/}
+                        {/*                    setDropdownOpen(false); // 선택 후 드롭다운 닫기*/}
+                        {/*                }}*/}
+                        {/*            >*/}
+                        {/*                {project.name}*/}
+                        {/*            </li>*/}
+                        {/*        ))}*/}
+                        {/*    </ul>*/}
+                        {/*)}*/}
                     </li>
 
                     <li>

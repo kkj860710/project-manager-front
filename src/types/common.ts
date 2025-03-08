@@ -1,20 +1,5 @@
 import { z } from "zod";
 
-// export interface UserType {
-//     id?: number,
-//     userId?: number,
-//     username? : string,
-//     email? : string,
-//     password? : string,
-//     passwordConfirm? : string,
-//     role? : string,
-//     iat? : number,
-//     exp? : number,
-//     jti? : string,
-// }
-
-
-
 const PASSWORD_REGEX = /^(?=.*[a-zA-Z])(?=.*[!@#$%^*+=-])(?=.*[0-9]).{8,15}$/;
 
 export const registerSchema = z.object({

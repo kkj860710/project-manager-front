@@ -1,4 +1,4 @@
-export interface Issue {
+export interface IssueType {
     id?: number,                // front 사용 아이디
     issueId: string,            // db 저장 이슈 아이디
     projectId: string,          // 프로젝트 아이디

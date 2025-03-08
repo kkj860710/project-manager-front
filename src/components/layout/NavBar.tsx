@@ -8,17 +8,8 @@ interface NavBarProps {
 
 const NavBar  = ({currentUser} : NavBarProps) => {
 
-        // console.log(currentUser)
-        // const dispatch = useDispatch();
-        // const menuOpen = useSelector((state: RootState) => state.menu.isOpen);
-        //
-        // const handleMenu = () => {
-        //     dispatch(toggleMenu());
-        // }
-        console.log("NavBar: ", currentUser)
-
         return (
-            <nav className="relative z-10 w-full bg-orange-500 text-white">
+            <header className="relative z-10 w-full bg-orange-500 text-white">
                 <div className="flex items-center justify-between mx-5 sm:mx-10 lg:mx-20">
                     <div className="flex items-center text-2xl h-14">
                         <Link href="/">Logo</Link>
@@ -28,7 +19,8 @@ const NavBar  = ({currentUser} : NavBarProps) => {
                     {/*</div>*/}
                     <div className='hidden sm:block'>
 
-                        <NavItem
+                        {/*todo 프로젝트 정보*/}
+                        <NavItem                            
                             currentUser={currentUser}
                         />
                     </div>
@@ -36,7 +28,7 @@ const NavBar  = ({currentUser} : NavBarProps) => {
                 {/*<div className='block sm:hidden'>*/}
                 {/*    {(menuOpen === false) ? null : <NavItem mobile />}*/}
                 {/*</div>*/}
-            </nav>
+            </header>
         )
     // }
 }
