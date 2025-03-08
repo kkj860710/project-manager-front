@@ -1,5 +1,5 @@
 import Link from "next/link";
-import NavItem from "@/components/common/NavItem";
+import NavItem from "@/components/layout/NavItem";
 import {Session} from "next-auth";
 
 interface NavBarProps {

@@ -1,7 +1,7 @@
 import type {Metadata} from "next";
 import "@/styles/globals.css";
-import NavBar from "@/components/common/NavBar";
-import Footer from "@/components/common/Footer";
+import NavBar from "@/components/layout/NavBar";
+import Footer from "@/components/layout/Footer";
 import React from "react";
 import {getServerSession} from "next-auth";
 import {authOptions} from "./api/auth/auth-options";
