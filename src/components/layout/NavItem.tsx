@@ -4,6 +4,8 @@ import Link from "next/link";
 import {signOut} from "next-auth/react";
 
 import {Session} from "next-auth";
+import useProjectStore from "@/store/projects";
+import useCommonStore, { useCommonStore } from "@/store/commons";
 
 interface NavItemProps {
     mobile? : boolean;
@@ -17,20 +19,23 @@ const NavItem = ({ mobile, currentUser } : NavItemProps)=> {
     // 프로젝트 가져오기
     // 해당프로젝트를 nav클릭시 하단에 표시
 
-    const [projects, setProjects] = useState<{ id: string; name: string }[]>([]);
-    const [dropdownOpen, setDropdownOpen] = useState(false);
+    // const [projects, setProjects] = useState<{ id: string; name: string }[]>([]);
+    // const [dropdownOpen, setDropdownOpen] = useState(false);
 
-    const fetchProjects = async () => {
-        try {
-            const res = await fetch("/api/projects"); // 백엔드 API 호출
-            if (!res.ok) throw new Error("Failed to fetch projects");
-            const data = await res.json();
-            setProjects(data);
-            setDropdownOpen(!dropdownOpen); // 버튼 클릭 시 드롭다운 열기/닫기
-        } catch (error) {
-            console.error("Error fetching projects:", error);
-        }
-    };
+    const {project, setProject, projects, setProjects} = useProjectStore();
+    const {dropdownOpen, setDropdownOpen} = useCommonStore();
+
+    // const fetchProjects = async () => {
+    //     try {
+    //         const res = await fetch("/api/projects"); // 백엔드 API 호출
+    //         if (!res.ok) throw new Error("Failed to fetch projects");
+    //         const data = await res.json();
+    //         setProjects(data);
+    //         setDropdownOpen(!dropdownOpen); // 버튼 클릭 시 드롭다운 열기/닫기
+    //     } catch (error) {
+    //         console.error("Error fetching projects:", error);
+    //     }
+    // };
 
 
     return (
@@ -42,7 +47,7 @@ const NavItem = ({ mobile, currentUser } : NavItemProps)=> {
                     {/* 프로젝트 드롭다운 버튼 */}
                     <li className="relative">
                         <button
-                            onClick={fetchProjects}
+                            // onClick={fetchProjects}
                             // className="py-2 px-4 bg-blue-600 text-white rounded-md"
                         >
                             프로젝트

@@ -1,5 +1,23 @@
 import { z } from "zod";
 
+export const initialCommonState: CommonState = {
+    dropdownOpen : false,
+    isOpen: false
+}
+
+export interface CommonStore {
+    dropdownOpen: CommonState["dropdownOpen"];
+    setDropdownOpen: (open: CommonState["dropdownOpen"]) => void;
+    isOpen: CommonState["isOpen"];
+    setIsOpen: (open: CommonState["isOpen"]) => void;
+}
+
+export interface CommonState {
+    dropdownOpen : boolean;
+    isOpen: boolean;
+}
+
+
 const PASSWORD_REGEX = /^(?=.*[a-zA-Z])(?=.*[!@#$%^*+=-])(?=.*[0-9]).{8,15}$/;
 
 export const registerSchema = z.object({

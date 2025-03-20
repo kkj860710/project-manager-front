@@ -1,13 +1,18 @@
-import { NextResponse} from "next/server";
-// import {getToken} from "next-auth/jwt";
+import {NextResponse} from "next/server";
 
 export { default } from "next-auth/middleware"
 
+// export async function middleware (req: NextRequest) {
 export async function middleware () {
 
     // const session = await getToken({req, secret: process.env.NEXTAUTH_JWT_SECRET});
-
+    //
     // console.log("session", session);
+    //
+    // if(!session) {
+    //     return NextResponse.redirect(new URL('/auth/sign-in', req.url))
+    // }
+
 
     // const pathname = req.nextUrl.pathname;
     //

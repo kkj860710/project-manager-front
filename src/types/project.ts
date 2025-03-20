@@ -1,7 +1,24 @@
-export interface ProjectType {
-    id?: number,            // front id
-    projectId: string,      // db id
-    name: string,           // 프로젝트 명
-    description: string,    // 설명
-    ownerId: string,        // 프로젝트 책임자
+export const initialProjectState: ProjectState = {
+    id: 0,
+    projectId: "",
+    name: "",
+    description: "",
+    ownerId: "",
+    userList: []
+}
+
+export interface ProjectStore {
+    project: ProjectState;
+    setProject: (newProject: ProjectState) => void;
+    projects: ProjectState[];
+    setProjects: (newProject : ProjectState) => void;
+}
+
+export interface ProjectState {
+    id: number;
+    projectId: string;
+    name: string;
+    description: string;
+    ownerId: string;
+    userList: string[];
 }
