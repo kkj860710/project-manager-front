@@ -1,11 +1,11 @@
 'use client'
-import React, {useState} from "react";
+import React from "react";
 import Link from "next/link";
 import {signOut} from "next-auth/react";
 
 import {Session} from "next-auth";
 import useProjectStore from "@/store/projects";
-import useCommonStore, { useCommonStore } from "@/store/commons";
+import useCommonStore from "@/store/commons";
 
 interface NavItemProps {
     mobile? : boolean;
@@ -44,8 +44,12 @@ const NavItem = ({ mobile, currentUser } : NavItemProps)=> {
             {/*<li className="py-2 text-center border-b-4 cursor-pointer"><Link href="/user">User</Link></li>*/}
             {currentUser ? (
                 <>
+                    <li className="relative">
+                        <Link href="/project">프로젝트 추가</Link>
+                    </li>
                     {/* 프로젝트 드롭다운 버튼 */}
                     <li className="relative">
+
                         <button
                             // onClick={fetchProjects}
                             // className="py-2 px-4 bg-blue-600 text-white rounded-md"

@@ -1,14 +1,15 @@
 'use client'
 import {Formik} from 'formik';
-import {UserType} from '@/types/user';
+
 import {useRouter} from "next/navigation";
 import axios from "axios";
+import {UserState} from "@/types/user";
 
 
 const SignUp = () => {
     const router = useRouter();
 
-    const initialValues: UserType = {
+    const initialValues: UserState = {
         username : '',
         email : '',
         password : '',
@@ -33,7 +34,7 @@ const SignUp = () => {
                         }
                     }}
                     validate={(values) => {
-                        const errors: Partial<UserType> = {};
+                        const errors: Partial<UserState> = {};
                         if (!values.email) {
                             errors.email = '이메일은 필수 항목입니다.';
                         }

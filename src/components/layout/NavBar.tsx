@@ -1,6 +1,7 @@
 import Link from "next/link";
-import NavItem from "@/components/layout/NavItem";
+
 import {Session} from "next-auth";
+import NavItem from "@/components/layout/NavItem";
 
 interface NavBarProps {
     currentUser: Session | null;
